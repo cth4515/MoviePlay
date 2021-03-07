@@ -1,0 +1,217 @@
+<div class="container py-3">
+  <div class="py-5 text-center">
+    <h2>Create Movie</h2>
+    <p class="lead"> Form to create new Movie for Admin </p>
+    <div>
+      {{f.title.errors}}
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-8">
+      <h4 class="mb-3">Movie details</h4>
+      <form [formGroup]="createMovieForm"
+            (ngSubmit)="onSubmit()">
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label for="title">Title</label>
+            <input class="form-control"
+                   formControlName="title"
+                   id="title"
+                   type="text"
+                   [ngClass]="{ 'is-invalid': submitted && f.title.errors }">
+            <div *ngIf="submitted && f.title.errors"
+                 class="invalid-feedback">
+              <div *ngIf="f.title.errors?.required">Title is required</div>
+              <div *ngIf="f.title.errors?.maxlength">Title maximum length is 64</div>
+            </div>
+
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="tagline">Tagline</label>
+            <input class="form-control"
+                   formControlName="tagline"
+                   id="tagline"
+                   type="text">
+          </div>
+        </div>
+        <div class="mb-3">
+          <label for="overview">Overview</label>
+          <textarea class="form-control"
+                    formControlName="overview"
+                    rows="3"
+                    id="overview"> </textarea>
+          <div *ngIf="submitted && f.overview.errors"
+               class="invalid-feedback">
+            <div *ngIf="f.overview.errors?.required">Overview is required</div>
+            <div *ngIf="f.overview.errors?.maxlength">Overview maximum length is 8192</div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label for="budget">Budget</label>
+            <input class="form-control"
+                   formControlName="budget"
+                   id="budget"
+                   type="number"
+                   [ngClass]="{ 'is-invalid': submitted && f.budget.errors }">
+            <div *ngIf="submitted && f.budget.errors"
+                 class="invalid-feedback">
+              <div *ngIf="f.budget.errors?.min">Budget should be minimum $20,000</div>
+              <div *ngIf="f.budget.errors?.max">Budget should be maximum 120</div>
+            </div>
+
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="revenue">Revenue</label>
+            <input class="form-control"
+                   formControlName="revenue"
+                   id="revenue"
+                   type="number"
+                   [ngClass]="{ 'is-invalid': submitted && f.revenue.errors }">
+            <div *ngIf="submitted && f.revenue.errors"
+                 class="invalid-feedback">
+              <div *ngIf="f.revenue.errors?.min">Revenue should be minimum $20</div>
+              <div *ngIf="f.revenue.errors?.max">Revenue cannot exceed $5 Billion</div>
+            </div>
+
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label for="imdbUrl">IMDB</label>
+            <input class="form-control"
+                   formControlName="imdbUrl"
+                   id="imdbUrl"
+                   type="url"
+                   [ngClass]="{ 'is-invalid': submitted && f.imdbUrl.errors }">
+            <div *ngIf="submitted && f.imdbUrl.errors"
+                 class="invalid-feedback">
+              <div *ngIf="f.imdbUrl.errors?.pattern">IMDB URL wrong format</div>
+            </div>
+
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="tmdbUrl">TMDB</label>
+            <input class="form-control"
+                   formControlName="tmdbUrl"
+                   id="tmdbUrl"
+                   type="url"
+                   [ngClass]="{ 'is-invalid': submitted && f.tmdbUrl.errors }">
+            <div *ngIf="submitted && f.tmdbUrl.errors"
+                 class="invalid-feedback">
+              <div *ngIf="f.tmdbUrl.errors?.pattern">TMDB URL wrong format</div>
+            </div>
+
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label for="posterUrl">Poster</label>
+            <input class="form-control"
+                   formControlName="posterUrl"
+                   id="posterUrl"
+                   type="url"
+                   [ngClass]="{ 'is-invalid': submitted && f.posterUrl.errors }">
+            <div *ngIf="submitted && f.posterUrl.errors"
+                 class="invalid-feedback">
+              <div *ngIf="f.posterUrl.errors?.pattern">Poster URL wrong format</div>
+            </div>
+
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="backdropUrl">Backdrop</label>
+            <input class="form-control"
+                   formControlName="backdropUrl"
+                   id="backdropUrl"
+                   type="url"
+                   [ngClass]="{ 'is-invalid': submitted && f.backdropUrl.errors }">
+            <div *ngIf="submitted && f.backdropUrl.errors"
+                 class="invalid-feedback">
+              <div *ngIf="f.backdropUrl.errors?.pattern">Backdrop URL wrong format</div>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <div class="col-md-3 mb-3">
+            <label for="releaseDate">Release Date</label>
+            <input class="form-control"
+                   formControlName="releaseDate"
+                   id="releaseDate"
+                   type="date"
+                   [ngClass]="{ 'is-invalid': submitted && f.releaseDate.errors }">
+            <div *ngIf="submitted && f.releaseDate.errors"
+                 class="invalid-feedback">
+              Date Wrong Format
+              <!-- <div *ngIf="f.releaseDate.errors?.pattern">Poster URL wrong format</div> -->
+            </div>
+
+          </div>
+          <div class="col-md-3 mb-3">
+            <label for="originalLanguage">Language</label>
+            <input class="form-control"
+                   formControlName="originalLanguage"
+                   id="originalLanguage"
+                   type="text"
+                   [ngClass]="{ 'is-invalid': submitted && f.originalLanguage.errors }">
+            <div *ngIf="submitted && f.originalLanguage.errors"
+                 class="invalid-feedback">
+            </div>
+
+          </div>
+          <div class="col-md-3 mb-3">
+            <label for="runTime">Run Time</label>
+            <input class="form-control"
+                   formControlName="runTime"
+                   id="runTime"
+                   type="number"
+                   [ngClass]="{ 'is-invalid': submitted && f.runTime.errors }">
+            <div *ngIf="submitted && f.runTime.errors"
+                 class="invalid-feedback">
+              <div *ngIf="f.runTime.errors?.min">Run Time should be minimum 10 minutes</div>
+              <div *ngIf="f.runTime.errors?.max">Run Time cannot exceed 360 minutes</div>
+            </div>
+
+          </div>
+          <div class="col-md-3 mb-3">
+            <label for="price">Price</label>
+            <input class="form-control"
+                   formControlName="price"
+                   id="price"
+                   type="number"
+                   [ngClass]="{ 'is-invalid': submitted && f.price.errors }">
+            <div *ngIf="submitted && f.price.errors"
+                 class="invalid-feedback">
+              <div *ngIf="f.price.errors?.min">Price cannor be less than $1</div>
+              <div *ngIf="f.price.errors?.max">Price cannot be more than $100</div>
+            </div>
+
+          </div>
+        </div>
+        <h5 class="mb-2">Genres</h5>
+        <div class="row ml-2">
+          <!-- <h5 class="mb-3">Genres</h5> -->
+          <div class="form-check col-md-4"
+               formArrayName="genres"
+               *ngFor="let genre of createMovieForm.controls.genres.controls; let i = index">
+            <input class="form-check-input"
+                   type="checkbox"
+                   id="inlineCheckbox1"
+                   [value]='movie.genres[i]?.id'
+                   [formControlName]="i">
+            <label class="form-check-label"
+                   for="inlineCheckbox1">{{movie.genres[i]?.name}}</label>
+          </div>
+
+        </div>
+
+        <hr class="mb-4">
+
+        <input type="submit"
+               class="btn btn-primary btn-block"
+               value="Submit">
+      </form>
+    </div>
+  </div>
+</div>

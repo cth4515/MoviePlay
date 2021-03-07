@@ -1,0 +1,9 @@
+<ul class="list-unstyled p-2">
+  <li *ngFor="let genre of genres"
+      class="m-1">
+    <a href="#"
+       [routerLink]="['movies/genres/', genre.id]">
+      {{genre.name}}
+    </a>
+  </li>
+</ul>
